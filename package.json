@@ -1,0 +1,65 @@
+{
+	"name": "kaa-discord-rpc",
+	"author": {
+		"name": "rohank05",
+		"email": "rohan.shuvam@gmail.com"
+	},
+	"icon": "src/fav",
+	"version": "1.0.0",
+	"main": "src/index.js",
+	"license": "MIT",
+	"description": "KAA Discord RPC",
+	"build": {
+		"appId": "com.kaa.anime",
+		"win": {
+			"target": "nsis",
+			"icon": "src/icon.ico"
+		}
+	},
+	"devDependencies": {
+		"@electron-forge/cli": "^6.0.0-beta.57",
+		"@electron-forge/maker-deb": "^6.0.0-beta.57",
+		"@electron-forge/maker-rpm": "^6.0.0-beta.57",
+		"@electron-forge/maker-squirrel": "^6.0.0-beta.57",
+		"@electron-forge/maker-zip": "^6.0.0-beta.57",
+		"electron": "13.0.1"
+	},
+	"scripts": {
+		"start": "electron-forge start",
+		"build": "electron-builder -w",
+		"package": "electron-forge package",
+		"make": "electron-forge make"
+	},
+	"dependencies": {
+		"discord-rpc": "^3.2.0",
+		"electron-squirrel-startup": "^1.0.0"
+	},
+	"config": {
+		"forge": {
+			"packagerConfig": {},
+			"makers": [
+				{
+					"name": "@electron-forge/maker-squirrel",
+					"config": {
+						"name": "KickAssAnime",
+						"icon": "src/icon"
+					}
+				},
+				{
+					"name": "@electron-forge/maker-zip",
+					"platforms": [
+						"darwin"
+					]
+				},
+				{
+					"name": "@electron-forge/maker-deb",
+					"config": {}
+				},
+				{
+					"name": "@electron-forge/maker-rpm",
+					"config": {}
+				}
+			]
+		}
+	}
+}
