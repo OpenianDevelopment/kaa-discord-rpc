@@ -34,7 +34,7 @@ npm run make
 
 ## Meta
 
-Rohan Kumar – [@rohank05](https://twitter.com/rohank05) – rohan.shuvam@gmail.com
+Rohan Kumar – [@rohank05](https://twitter.com/rohank05) – rohan.shuvam@gmail.com \n
 Discord - [Server](https://discord.gg/a4zkCjg) - Major Senpai スレーブマスター#1091
 
 
