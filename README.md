@@ -3,7 +3,7 @@
 
 
 
-This application is used to show your KAA activity on Discord using Discord Rich Presence
+This application is used to show your KAA activity on Discord using Discord Rich Presence and inbuilt KAA Menhera Extension.
 
 ![](https://cdn.discordapp.com/attachments/627955485793976330/849908495427698688/unknown.png)
 
