@@ -1,0 +1,11 @@
+{
+	"name": "KAA Menhera",
+	"version": "5.1",
+	"description": "KickAssAnime Extension",
+	"permissions": ["webRequest", "webRequestBlocking", "<all_urls>"],
+	"background": {
+		"scripts": ["axios.min.js", "background.js"]
+	},
+
+	"manifest_version": 2
+}

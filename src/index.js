@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, session } = require("electron");
 const { Client } = require("discord-rpc");
 
 //Constructing RPC CLient
@@ -29,10 +29,8 @@ client.on("ready", () => {
 });
 //Application Login
 client.login({
-	clientId: "849306047813779536",
-	clientSecret: "1BoQn9OZQLpkOfdBIh6reEBvLfJIrCoi",
+	clientId: "",
 });
-
 //To stop app staring multiple times during installation
 if (require("electron-squirrel-startup")) return app.quit();
 
@@ -45,6 +43,12 @@ const createWindow = async () => {
 		icon: __dirname + "/icon.ico",
 	});
 
+	//loading extension
+	await session.defaultSession
+		.loadExtension(__dirname + "/extension")
+		.catch((err) => {
+			console.log(err);
+		});
 	//Interval for getting new Name and Link
 	setInterval(() => {
 		// setting a temp url constant for checking later
