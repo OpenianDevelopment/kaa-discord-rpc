@@ -4,17 +4,17 @@ const { Client } = require("discord-rpc");
 //Constructing RPC CLient
 const client = new Client({ transport: "ipc" });
 //Global Varibales for RPC
-let name = "KickAssAnime",
-	url = "https://www2.kickassanime.rs/",
-	time = new Date().getTime();
+let name = "Browsing Anime",
+	shortName = "Free Anime on KAA";
+(url = "https://www2.kickassanime.rs/"), (time = new Date().getTime());
 
 //RPC Ready Event
 client.on("ready", () => {
 	//Interval to keep changing the status and button url
 	setInterval(() => {
 		client.setActivity({
-			details: "Watching Anime",
-			state: name,
+			details: name,
+			state: shortName,
 			largeImageKey: "icon",
 			largeImageText: "Kick Ass Anime",
 			startTimestamp: time,
@@ -29,9 +29,12 @@ client.on("ready", () => {
 });
 //Application Login
 client.login({
-	clientId: "",
-	clientSecret: "",
+	clientId: "849306047813779536",
+	clientSecret: "1BoQn9OZQLpkOfdBIh6reEBvLfJIrCoi",
 });
+
+//To stop app staring multiple times during installation
+if (require("electron-squirrel-startup")) return app.quit();
 
 //Creating a new Window
 const createWindow = async () => {
@@ -39,8 +42,6 @@ const createWindow = async () => {
 	const mainWindow = new BrowserWindow({
 		title: "KickAssAnime",
 		useContentSize: true,
-		darkTheme: true,
-		simpleFullscreen: true,
 		icon: __dirname + "/icon.ico",
 	});
 
@@ -51,6 +52,19 @@ const createWindow = async () => {
 		//Getting current url and title data of the window
 		url = mainWindow.getURL();
 		name = mainWindow.getTitle();
+
+		//setting presence to watching/Browsing/Searching
+		if (name.toLowerCase().includes("episode")) {
+			const newName = name.split(" ");
+			const index = newName.indexOf("Episode");
+			name = `Watching ${newName.slice(0, index).join(" ")}`;
+			shortName = newName.slice(index, index + 2).join(" ");
+		} else {
+			if (url.includes("search")) name = "Searching Anime";
+			else name = "Browsing Anime";
+			shortName = "Watch Free Anime on KAA";
+		}
+
 		//checking if url changed or now for setting new timestamp
 		if (oldLink !== url) {
 			time = new Date().getTime();
