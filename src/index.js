@@ -29,7 +29,7 @@ client.on("ready", () => {
 });
 //Application Login
 client.login({
-	clientId: "",
+	clientId: "849306047813779536",
 });
 //To stop app staring multiple times during installation
 if (require("electron-squirrel-startup")) return app.quit();
@@ -38,7 +38,7 @@ if (require("electron-squirrel-startup")) return app.quit();
 const createWindow = async () => {
 	//Constructing a new window
 	const mainWindow = new BrowserWindow({
-		title: "KickAssAnime",
+		title: "KickAssAnime [KAA]",
 		useContentSize: true,
 		icon: __dirname + "/icon.ico",
 	});
@@ -55,18 +55,20 @@ const createWindow = async () => {
 		const oldLink = url;
 		//Getting current url and title data of the window
 		url = mainWindow.getURL();
-		name = mainWindow.getTitle();
-
+		const title = mainWindow.getTitle();
+		console.log(url);
 		//setting presence to watching/Browsing/Searching
-		if (name.toLowerCase().includes("episode")) {
-			const newName = name.split(" ");
+		if (title.toLowerCase().includes("episode")) {
+			const newName = title.split(" ");
 			const index = newName.indexOf("Episode");
 			name = `Watching ${newName.slice(0, index).join(" ")}`;
 			shortName = newName.slice(index, index + 2).join(" ");
 		} else {
 			if (url.includes("search")) name = "Searching Anime";
 			else name = "Browsing Anime";
-			shortName = "Watch Free Anime on KAA";
+			if (url.split("/").indexOf("anime") > -1) {
+				shortName = `Looking at ${title.split(" ").slice(0, -3).join(" ")}`;
+			} else shortName = "Watch Free Anime on KAA";
 		}
 
 		//checking if url changed or now for setting new timestamp
